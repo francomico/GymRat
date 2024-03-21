@@ -1,30 +1,23 @@
-import Inicio from "./Screens/Home"
-import Productos from "./Screens/Productos"
-import Contacto from "./Screens/Contacto"
-import SobreNosotros from "./Screens/SobreNosotros"
-
-import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-router-dom"
-import NavBar from "./Components/NavBar"
-import ItemListContainer from "./Components/ItemListContainer"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import HomeComponent from "./Components/home/HomeComponent"
+import ContactComponent from "./Components/contact/ContactComponent"
+import { ProductsComponent } from "./Components/products/ProductsComponent"
+import NavBar from "./Components/navigation/NavBar"
+import SingleProduct from "./Components/product/SingleProduct"
 
 
 function App() {
   return (
     <>
-      <div className="flex flex-col">
-        <BrowserRouter>
-          <NavBar>
-            <Routes>
-              <Route path="/Home" element={<Inicio/>}/>
-              <Route path="/SobreNosotros" element={<SobreNosotros/>}/>
-              <Route path="/Productos" element={<Productos/>}/>
-              <Route path="/Contacto" element={<Contacto/>}/>
-            </Routes>
-          </NavBar>
-        </BrowserRouter>
-        <ItemListContainer greeting="¡¡Productos a la venta!!"/>
-
-      </div>
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route exact path='/' element={<HomeComponent/>}/>
+          <Route exact path='/products' element={<ProductsComponent/>}/>
+          <Route exact path='/product/:prodId' element={<SingleProduct/>}/>
+          <Route exact path='/contact' element={<ContactComponent/>}/>
+        </Routes>
+      </BrowserRouter>
       
     </>
   )
